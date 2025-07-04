@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html_css_js_basic</title>
+    <!-- 외부스타일 import시에 link태그 사용 -->
+    <link rel="stylesheet" href="css/mystyle.css">
+    <style>
+        /* style 적용 대체적으로 구체적인 요소가 우선함 */
+
+        /* 태그선택 */
+        p{
+            color: grey; text-align: center;
+        }
+        /* 클래스선택 */
+        .c1{
+            color: blue;
+        }
+        .c2{
+            text-decoration: underline;
+        }
+        /* ID선택 */
+        #i1{
+            color: palegreen;
+        }
+
+        /* 자식선택자 */
+        div > h2{
+            color: green;
+        }
+    </style>
+
+    <script>
+        document.getElementById("load1").innerHTML="change1";
+        function updateF1(){
+            document.getElementById("f1").innerHTML="change1";
+        }
+    </script>
+</head>
+<body>
+    <!-- CSS스타일 적용방법 3가지 -->
+    <!-- 인라인스타일 : 태그내에서 style옵션 사용 -->
+    <p style="color: green; text-align: center;">인라인스타일 적용</p>
+
+    <!-- ⭐내부스타일 적용 : 태그선택자, 클래스선택자, ID선택자 -->
+    <p>태그선택자 적용</p>
+    <p class="c1">클래스선택자 적용</p>
+    <p class="c1 c2">다중 클래스선택자 적용</p>
+    <p class="c1" id="i1">클래스선택자 및 ID선택자 적용</p>     <!-- 구체적인게 우선, 중첩은 같이 적용 -->
+    <p id="i1">ID선택자 적용</p>
+
+    <!-- 외부스타일(⭐css) -->
+    <p id="external">외부스타일 적용</p>
+
+    <!-- 자식선택자 -->
+    <div>
+        <h2>자식선택자 예시</h2>
+    </div>
+    <h2>자식선택자 예시</h2>
+
+
+    <h2>javascript 예시</h2>
+    <!-- js적용방법 2가지 : 내부스크립트(head, body), 외부스크립트 -->
+    <!-- html문서는 상단의 head부터 순차적으로 실행되기 때문에, 순서에 따라 반영이 안될 수 있음. -->
+    <p id="load1">js 로드 순서 1</p>     <!-- 반영안됨(⭐load1 script가 head에 있음.) -->
+    <p id="load2">js 로드 순서 2</p>     <!-- 반영됨 -->
+
+    <p id="f1">변경될 내용1</p>
+    <!-- onclick : 버튼을 클릭하면, updateF1() : 함수를 실행하겠다. -->
+    <button onclick="updateF1()">내용1 변경</button>    <!-- 반영됨 -->
+    <button onclick="reset1()">내용1 변경취소</button>
+    <p id="f2">변경될 내용2</p>
+    <button onclick="updateF2()">내용2 변경</button>    <!-- 반영됨 -->
+    <button onclick="reset2()">내용2 변경취소</button>
+
+    <script src="js/myjs.js"></script> <!--⭐-->
+    <script>
+        document.getElementById("load2").innerHTML="change2";
+        function updateF2(){
+            document.getElementById("f2").innerHTML="change2";
+        }
+        // function reset1(){
+        //     document.getElementById("f1").innerHTML="변경될 내용1"
+        // }
+        // function reset2(){
+        //     document.getElementById("f2").innerHTML="변경될 내용2"
+        // }
+    </script>
+</body>
+</html>
