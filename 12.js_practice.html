@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+</head>
+<body>
+    <select id="calculator">
+        <option value="plus">+</option>        
+        <option value="minus">-</option>        
+        <option value="multiply">*</option>        
+        <option value="divide">/</option>
+    </select>
+    <button onclick="calculate()">실행</button>
+
+    <input type="text" id="input1">
+    <input type="text" id="input2">
+    <div id="result">결과값</div>
+
+    <script>
+        function calculate() {
+            const cal = document.getElementById("calculator").value;    //⭐.value
+            const i1 = Number(document.getElementById("input1").value); //⭐Number
+            const i2 = Number(document.getElementById("input2").value);
+            let result = 0;
+
+            if(cal === 'plus') {
+                result = i1+i2;
+            } else if(cal === 'minus') {
+                result = i1-i2;
+            } else if(cal === 'multiply') {
+                result = i1*i2;
+            } else if(cal === 'divide') {
+                result = i1/i2;
+            }
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</body>
+</html>
