@@ -68,7 +68,7 @@
             };
         }
 
-        //⭐
+        //⭐reload, href
         function reloadFunction() {
             // 화면 새로고침 함수
             window.location.reload();
@@ -119,13 +119,14 @@
     
 
 
+     <!-- ⭐addEventListener -->
     <script>
         const b1 = document.getElementById("button1");  //버튼을 b1에 담음
         if(b1) {
-            b1.addEventListener('click', ()=>alert("hello world")); // b1을 click하면, 뒤의 함수를 실행.
+            b1.addEventListener('click', ()=>alert("hello world")); // b1을 click하면, 뒤의 함수를 실행.   
         }
         function scrollEvent() {
-            window.addEventListener('scroll', ()=>console.log("hello world2"));
+            window.addEventListener('scroll', ()=>console.log("hello world2")); //window : window전체에 이벤트를 검.
         }
     </script>
 </body>

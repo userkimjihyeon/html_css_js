@@ -34,23 +34,22 @@
     <script>
         const jsonText = '{"name":"Alice","age":25,"score":85}';
         // json을 javascript의 객체로 역직렬화(parsing)
-        const obj1 = JSON.parse(jsonText);          //JSON 문자열 → 자바스크립트 객체
+        const obj1 = JSON.parse(jsonText);          //⭐JSON.parse : JSON 문자열 → 자바스크립트 객체
         console.log(obj1);
         document.getElementById("name").innerHTML = obj1.name;  //id="name"인 HTML 요소 안에 obj1.name의 값을 글자처럼 넣겠다
         document.getElementById("age").innerHTML = obj1.age;
         document.getElementById("score").innerHTML = obj1.score;
 
         const jsonText2 = '[{"name":"Alice","age":25,"score":85},{"name":"Bob","age":28,"score":92},{"name":"Charlie","age":32,"score":88}]';
-        const obj2 = JSON.parse(jsonText2)
+        const obj2 = JSON.parse(jsonText2)  //배열안에 객체3개가 들어감
         for(let i=0; i<obj2.length; i++) {
             // const html = "<tr><td>" + obj2[i].name + "</td><td>" + obj2[i].age + "</td><td>" + obj2[i].score + "</td></tr>"
             // js에서 문자열에 js변수를 끼워넣을때 백틱(`)에 ${}를  활용.
             const html = `<tr><td> ${obj2[i].name} </td><td> ${obj2[i].age} </td><td> ${obj2[i].score} </td></tr>`;
             document.getElementById("tbodyId").innerHTML += html;
         }
-
         // json직렬화
-        const jsonText3 = JSON.stringify(obj2);     //자바스크립트 객체 → JSON 문자열
+        const jsonText3 = JSON.stringify(obj2);     //⭐JSON.stringify : 자바스크립트 객체 → JSON 문자열
         console.log(jsonText3);
 
     </script>

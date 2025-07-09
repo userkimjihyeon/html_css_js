@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callback 지옥</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        // 콜백지옥 : 비동기내에서 순서보장이 필요 => async, await
+
+        // async는 함수전체가 비동기임을 의미.
+        async function callBackHell(){
+            // await는 비동기함수내에서 동기성을 보장하기 위한 키워드.
+            const result1 = await $(document).ready(function(){
+                $.ajax({
+                    url: "https://jsonplaceholder.typicode.com/posts/1",
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(a){
+                        console.log("a :" + a);
+                    },
+                    error: function(){
+                    }
+                })
+            });
+            const result2 = await $(document).ready(function(){
+                $.ajax({
+                    url: "https://jsonplaceholder.typicode.com/posts/1",
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(b){
+                        console.log("b :" + b);
+                    },
+                    error: function(){
+                    }
+                })
+            });
+            const result3 = await $(document).ready(function(){
+                $.ajax({
+                    url: "https://jsonplaceholder.typicode.com/posts/1",
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(c){
+                        console.log("c :" + c);
+                    },
+                    error: function(){
+                    }
+                })
+            });
+        }
+        //async 던져놓고 아래 코드 실행.
+        callBackHell();                 //두번째 실행
+        console.log("hello world");     //첫번째 실행
+
+    </script>
+</body>
+</html>

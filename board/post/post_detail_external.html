@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 목록 조회</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
+    <a href="../post/post_list.html" class="navbar-brand mx-auto">게시판 서비스</a>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="../author/author_list.html" class="nav-link">회원 목록</a>
+      </li>
+      <li class="nav-item">
+        <a href="../post/post_list.html" class="nav-link">게시글 목록</a>
+      </li>
+      <li class="nav-item">
+        <a href="../author/author_register.html" class="nav-link">회원 가입</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h3>게시글 상세 조회</h3>
+    <input type="text" id="input">
+    <button class="btn btn-primary" onclick="getPost()">조회</button>
+    <table class="table">
+      <tr>
+        <td>id</td>
+        <td id="id"></td>
+      </tr>
+      <tr>
+        <td>글쓴이ID</td>
+        <td id="userId"></td>
+      </tr>
+      <tr>
+        <td>제목</td>
+        <td id="title"></td>
+      </tr>
+      <tr>
+        <td>내용</td>
+        <td id="contents"></td>
+      </tr>
+  </table>
+  </div>
+
+  <script>
+    async function getPost() {
+      try {
+        const inputVal = document.getElementById("myInput").value;
+
+        const response = await axios.get("https://jsonplaceholder.typicode.com/posts/" + inputVal);
+        const result = response.data;
+        // console.log(result);
+
+        document.getElementById("id").innerHTML = result.id;
+        document.getElementById("userId").innerHTML = result.userId;
+        document.getElementById("title").innerHTML = result.title;
+        document.getElementById("contents").innerHTML = result.contents;
+      } catch(e) {
+        alert("존재하지 않는 게시글입니다.");
+      }
+    };
+  </script>
+</body>
+</html>

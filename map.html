@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Leaflet 여러 마커 예제</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <style>
+    #map {
+      height: 500px;
+      width: 100%;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📍 다양한 마커 예제 (Leaflet + OpenStreetMap)</h2>
+  <div id="map"></div>
+
+  <script>
+    // 1. 지도 생성
+    const map = L.map('map').setView([37.5665, 126.9780], 13); // 서울
+
+    // 2. 타일 (지도 배경) 불러오기
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // 3. 마커 정보 배열 (위도, 경도, 설명)
+    const locations = [
+      { lat: 37.5665, lng: 126.9780, text: "서울 시청" },
+      { lat: 37.5700, lng: 126.9768, text: "덕수궁" },
+      { lat: 37.5714, lng: 126.9910, text: "종묘" },
+      { lat: 37.5610, lng: 126.9830, text: "명동성당" },
+      { lat: 37.5796, lng: 126.9770, text: "경복궁" }
+    ];
+
+    // 4. 마커 반복 생성
+    locations.forEach(loc => {
+      L.marker([loc.lat, loc.lng])
+        .addTo(map)
+        .bindPopup(loc.text);
+    });
+  </script>
+
+</body>
+</html>

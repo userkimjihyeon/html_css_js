@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js axios</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>       <!-- axios 라이브러리 -->
+</head>
+<body>
+    <button onclick="postApiSingleData()">단건데이터 호출</button>
+    <button onclick="postApiMultiData()">리스트데이터 호출</button>
+
+    <script>
+        //async
+        async function postApiSingleData() {
+            //await
+            // axios함수는 비동기함수. json을 객체로 parsing해주는 기능 내장.   (ajax보다 간단)
+            const result = await axios.get("https://jsonplaceholder.typicode.com/posts/1")
+            console.log(result.data);      //.data : 객체 데이터에 접근
+        }
+        async function postApiMultiData() {
+            const result = await axios.get("https://jsonplaceholder.typicode.com/posts")
+            console.log(result.data);      //.data : 객체 데이터에 접근
+        }
+    </script>
+</body>
+</html>
