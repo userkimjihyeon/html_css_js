@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>글쓰기</title>
+    <title>회원 목록 조회</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
 </head>
 <body>
   <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
@@ -23,12 +24,12 @@
   </nav>
     <div class="container my-4">
       <h3>글쓰기</h3>
-      <form action="http://localhost:8080/post/register2" method="post" enctype="application/x-www-form-urlencoded">
+      <form>
       <div class="my-2 form-group">
         <label for="title">제목</label>
         <input type="text" name="title" id="title" style="width: 727px;" class="form-control">
       </div>
-      <div class="my-2">
+      <div class="my-2" >
         <div class="my-2 form-group">
             <label for="contents">내용</label>
         </div>
@@ -36,9 +37,27 @@
       </div>
       
       <div>
-        <button type="submit" class="btn btn-primary">등록하기</button>
+        <button type="button" onclick="postCreate()" class="btn btn-primary">등록하기</button>
       </div>
       </form>
     </div>
+    <script>
+      async function postCreate() {
+        try {
+          const title = document.getElementById("title").value;
+          const contents = document.getElementById("contents").value;
+          // js의 FormData클래스를 통해 multipart formdata(또는 url인코딩) 형식의 데이터 조립
+          // formdata형식의 데이터는 title=hello&contents=hello world java...   (키=밸류&키=밸류 형태를 사용함)
+          const data = new FormData();  //객체 생성
+          data.append("title", title);  //"키", 밸류
+          data.append("contents", contents);
+          await axios.post("http://localhost:8080/post/register2", data);
+          window.location.href = "post_list.html";
+        } catch(e) {
+          console.log(e);
+          alert("글 작성이 실패했습니다.")
+        }  
+      }
+    </script>
 </body>
 </html>

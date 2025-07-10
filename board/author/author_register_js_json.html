@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 가입</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
+        <a href="../post/post_list.html" class="navbar-brand mx-auto">게시판 서비스</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="../author/author_list.html" class="nav-link">회원 목록</a>
+            </li>
+            <li class="nav-item">
+                <a href="../post/post_list.html" class="nav-link">게시글 목록</a>
+            </li>
+            <li class="nav-item">
+                <a href="../author/author_register.html" class="nav-link">회원 가입</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h3>회원 가입</h3>
+        <form action="" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="my-2 form-group">
+                <label for="id">아이디</label>
+                <input type="text" name="id" id="id" class="form-control">
+            </div>
+            <div class="my-2 form-group">
+                <label for="name">이름</label>
+                <input type="text" name="name" id="name" class="form-control">
+            </div>
+            <div class="my-2 form-group">
+                <label for="email">이메일</label>
+                <input type="email" name="email" id="email" class="form-control">
+            </div>
+            <div class="my-2 form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <button type="button" onclick="userRegister()" class="btn btn-primary">가입 하기</button>
+        </form>
+    </div>
+    <script>
+        async function userRegister() {
+            try {
+                // const id = document.getElementById("id").value;
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                // const data = { id: id, name: name, email: email, password: password };
+                const data = { name: name, email: email, password: password };
+                console.log(data);
+
+                await axios.post("http://localhost:8080/author/register1", data);
+                window.location.href = "/board/post/post_list.html";
+            } catch(e) {
+                console.log(e);
+                alert("회원가입에 실패하였습니다.");
+            }
+        }
+    </script>
+</body>
+</html>
